@@ -14,7 +14,7 @@ class Product(models.Model):
         db_table = 'product' #テーブルの物理名
         verbose_name = '商品' #テーブルの論理名
 
-class Perchase(models.Model):
+class Purchase(models.Model):
     """
     仕入れ
     """
