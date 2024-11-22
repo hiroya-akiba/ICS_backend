@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from .models import Product
 from .serializers import ProductSerializer
@@ -23,6 +24,10 @@ class ProductView(APIView):
         # 例4 項目指定 values('name','price'): select name, price from product;
         queryset = Product.objects.values('name', 'price')
         # その他はDjango公式ドキュメントを参照せよ
-        
+
         serializer = ProductSerializer(queryset, many=True)
         return Response(serializer.data, status.HTTP_200_OK)
+    
+class ProductModelViewSet(ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
