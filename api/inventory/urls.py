@@ -9,5 +9,5 @@ urlpatterns = [
     # ModelViewSet
     # 参照系->get, 登録系->post
     path('products/model/', views.ProductModelViewSet.as_view({'get': 'list', 'post': 'create'})),
-    
+    path('inventories/<int:id>/', views.InventoryView.as_view()),
 ]
