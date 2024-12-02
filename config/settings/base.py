@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from timedelta import datetime
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -141,4 +141,19 @@ LOGGING = {
             'handlers': ['console'],
         }
     }
+}
+
+# Simple JWT
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES' : (
+    'rest_framework_simplejwt.authentication.JWTAuthentication', # これで独自のViewを利用したAPIは全て認証が必要になる
+    ),
+    'DEFAULT_PERMISSION_CLASSES' : ['rest_framework.permissions.IsAuthenticated']
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME' : datetime.timedelta(minutes=1),
+    'REFRESH_TOKEN_LIFETIME' : datetime.timedelta(days=30),
+    'UPDATE_LAST_LOGIN' : True,
 }
