@@ -194,3 +194,4 @@ class LoginView(APIView):
             response.set_cookie('access', access, httponly=True, max_age=max_age)
             return response
         return Response({'errMsg' : 'ユーザーの認証に失敗しました。'}, stauts=status.HTTP_401_UNAUTHORIZED)
+    

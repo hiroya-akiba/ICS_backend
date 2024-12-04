@@ -1,3 +1,5 @@
 Django == 4.2.*
 djangorestframework
 mysqlclient
+djangorestframework-simplejwt
+timedelta
