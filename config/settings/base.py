@@ -25,7 +25,9 @@ SECRET_KEY = "django-insecure-wq6mhqba^#=&_#4vd%16o4avk_r_g04oyk02po9200_sl4boqk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '*',
+    ]
 
 
 # Application definition
@@ -147,7 +149,8 @@ LOGGING = {
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES' : (
-    'rest_framework_simplejwt.authentication.JWTAuthentication', # これで独自のViewを利用したAPIは全て認証が必要になる
+        'api.inventory.authentication.CustomJWTAuthentication',  # リクエスト情報にトークンを入れ込むカスタム認証
+        'rest_framework_simplejwt.authentication.JWTAuthentication', # これで独自のViewを利用したAPIは全て認証が必要になる
     ),
     'DEFAULT_PERMISSION_CLASSES' : ['rest_framework.permissions.IsAuthenticated']
 }
@@ -157,3 +160,5 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME' : datetime.timedelta(days=30),
     'UPDATE_LAST_LOGIN' : True,
 }
+
+COOKIE_TINE = 60 * 60 * 12
