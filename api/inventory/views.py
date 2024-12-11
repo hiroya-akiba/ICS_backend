@@ -11,7 +11,23 @@ from rest_framework.response import Response
 from .exception import BusinessException
 from .models import Product, Purchase, Sales
 from .serializers import InventorySerializer, ProductSerializer, PurchaseSerializer, SalesSerializer
+        # serializerはDjango内で、Json形式とオブジェクトの形式を変換するためのもの
+        # 例1
+        #   GETメソッド
+        #   serializer = ProductSerializer(オブジェクト形式のデータ)
+        #   Response(serializer.data, status.HTTP_200_OK)
+        #   ↑ ここで画面に返される値はJson形式となる。
+        #
+        # 例2
+        #   POSTメソッド
+        #   serializer = ProductSerializer(Json形式のデータ)
+        #   serializer.save()
+        #   ↑ ここで渡される値はオブジェクト型になる。
 from rest_framework import status
+
+# CSRF設定
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 class ProductView(APIView):
     """
@@ -172,10 +188,12 @@ class InventoryView(APIView):
             serializer = InventorySerializer(queryset, many=True)
             return Response(serializer.data, status.HTTP_200_OK)
     
+#@method_decorator(csrf_exempt, name='dispatch')
 class LoginView(APIView):
     """
     ユーザーのログイン処理
-    @args APIView (class) : rest_framework.viewsのAPIViewを受け取る
+    @Args:
+      APIView (class) : rest_framework.viewsのAPIViewを受け取る
     """
     # 認証クラスの指定
     authentication_classes = [JWTAuthentication]
@@ -192,6 +210,7 @@ class LoginView(APIView):
             response = Response(status=status.HTTP_200_OK)
             max_age = settings.COOKIE_TIME
             response.set_cookie('access', access, httponly=True, max_age=max_age)
+            response.set_cookie('refresh', refresh, httponly=True, max_age=max_age)
             return response
         return Response({'errMsg' : 'ユーザーの認証に失敗しました。'}, stauts=status.HTTP_401_UNAUTHORIZED)
     
