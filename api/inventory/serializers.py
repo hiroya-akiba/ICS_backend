@@ -20,3 +20,10 @@ class InventorySerializer(serializers.Serializer): #Modelに依存しないた�
     quantity = serializers.IntegerField()
     type = serializers.IntegerField()
     date = serializers.DateTimeField()
+
+class FileSerializer(serializers.Serializer):
+    file = serializers.FileField()
+
+class SalesSerializer(serializers.Serializer):
+    monthly_date = serializers.DateTimeField(format='%Y-%m')
+    monthly_price = serializers.IntegerField()

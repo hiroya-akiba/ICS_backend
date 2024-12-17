@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "api.hello_db",
     "api.inventory", #作成したモデルの名前を追記していく。
+    "batch", # カスタムコマンド用
 ]
 
 MIDDLEWARE = [

@@ -13,7 +13,7 @@ class CustomJWTAuthentication(JWTAuthentication):
         # 通常、DRFのJWT認証は Authorization ヘッダーにトークンを保持するが、
         # このコードはクッキーから取得したトークンを HTTP_AUTHORIZATION に設定することで、通常のヘッダー形式に変換する。
         request.META['HTTP_AUTHORIZATION'] = '{header_type} {access_token}'.format(
-            header_type = "Bearer", access_token=token
+            header_type ='Bearer', access_token=token
         )
         # '{キー1}{キー2}'.format(キー1=バリュー1, キー2=バリュー2)
         # で、出力は、「バリュー1バリュー2」となる。
@@ -21,5 +21,7 @@ class CustomJWTAuthentication(JWTAuthentication):
         
         # refreshトークンも同様にしてrequestヘッダーに入れ込む
         refresh = request.COOKIES.get('refresh')
-        request.META['HTTP_REFRESH_TOKEN'] = refresh
+        request.META['HTTP_REFRESH_TOKEN'] = '{header_type}:{refresh_token}'.format(
+            header_type='refresh', refresh_token=refresh
+        )
         return super().get_header(request)
