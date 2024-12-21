@@ -4,3 +4,4 @@ mysqlclient
 djangorestframework-simplejwt
 timedelta
 pandas
+pyyaml
