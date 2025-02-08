@@ -1,0 +1,4 @@
+- model: inventory.category
+  fields:
+    name: 共通
+    parent_category: null
