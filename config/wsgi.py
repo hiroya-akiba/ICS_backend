@@ -11,6 +11,15 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
+env = os.getenv('DJANGO_ENV', 'development') # .envで定義された環境変数で場合分け
+
+if env == 'product':
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.product')
+elif env == 'staging':
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.staging')
+elif env == 'development':
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.development')
+else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings.development')
 
 application = get_wsgi_application()
