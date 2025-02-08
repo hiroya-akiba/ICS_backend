@@ -1,5 +1,0 @@
-- model: inventory.category
-  fields:
-    name: ステージング
-    parent_category: null
-    
