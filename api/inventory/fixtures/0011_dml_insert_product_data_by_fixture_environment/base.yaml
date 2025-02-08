@@ -1,0 +1,59 @@
+- name: ブラック・マジシャン
+  fields:
+    price: 800
+    description: 遊戯王の主人公カードで、魔法使い族の代表的な存在。ノスタルジックなファンに愛される一枚。
+    category: Monster
+
+- name: 青眼の白龍
+  fields:
+    price: 1200
+    description: 海馬瀬人の象徴的なカード。高い攻撃力と美しいデザインで人気がある。
+    category: Monster
+
+- name: 真紅眼の黒竜
+  fields:
+    price: 700
+    description: 城之内克也の切り札で、ドラゴン族ファンにとって特別な存在。
+    category: Monster
+
+- name: カオス・ソルジャー -開闢の使者-
+  fields:
+    price: 1500
+    description: 環境でも強力な実績を持つ一枚。カオスデッキの中心的な存在。
+    category: Monster
+
+- name: 聖なるバリア -ミラーフォース-
+  fields:
+    price: 200
+    description: 相手の攻撃モンスターを全破壊する万能トラップカード。
+    category: Trap
+
+- name: 死者蘇生
+  fields:
+    price: 500
+    description: 墓地のモンスターを蘇らせる強力な汎用魔法カード。初心者から上級者まで使用可能。
+    category: Magic
+
+- name: ハーピィの羽根帚
+  fields:
+    price: 600
+    description: 相手の魔法・罠カードを一掃できる定番カード。
+    category: Magic
+
+- name: サイバー・ドラゴン
+  fields:
+    price: 300
+    description: 特殊召喚が容易で、機械族デッキで重宝されるカード。
+    category: Monster
+
+- name: 灰流うらら
+  fields:
+    price: 2000
+    description: 現代環境でも使用頻度が高い手札誘発モンスター。デュエルの戦略に幅を持たせる。
+    category: Monster
+
+- name: ラーの翼神竜
+  fields:
+    price: 1000
+    description: 三幻神の一つで、コレクション用途としても人気のあるカード。
+    category: Monster
