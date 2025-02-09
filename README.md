@@ -41,7 +41,7 @@ Linux/Mac : bash deploy.sh product
 python -m venv ICS_env
 source ICS_env/bin/activate
 pip install --upgrade pip setuptools
-pip install -r requirements.txt
+pip install -r ICS_backend/config/requirements/product/requirements.txt
 ```
 
 ## 5. Djangoをテスト起動
