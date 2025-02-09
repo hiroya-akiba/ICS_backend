@@ -9,6 +9,7 @@ packaging
 pandas
 PyJWT
 python-dateutil
+python-dotenv
 pytz
 PyYAML
 six
