@@ -1,60 +1,69 @@
-
-- name: "不協和音"
+- model: inventory.product
   fields:
+    name: "不協和音"
     price: 140
     description: "相手はフィールド上のモンスターを1体しか攻撃表示にできなくなる。"
-    category: "Trap"
+    category: 3
 
-- name: "ガーゴイル・パワード"
+- model: inventory.product
   fields:
+    name: "ガーゴイル・パワード"
     price: 160
     description: "戦士族のモンスターで、特殊召喚成功時に攻撃力が一時的に上昇する。"
-    category: "Monster"
+    category: 1
 
-- name: "メタル・デビルゾア"
+- model: inventory.product
   fields:
+    name: "メタル・デビルゾア"
     price: 210
     description: "通常のデビルゾアに比べて、機械族となったことでサポートカードの恩恵を受けられる。"
-    category: "Monster"
+    category: 1
 
-- name: "ブラック・ペンダント"
+- model: inventory.product
   fields:
+    name: "ブラック・ペンダント"
     price: 110
     description: "装備モンスターの攻撃力を500アップし、破壊された場合は相手に500ダメージを与える。"
-    category: "Magic"
+    category: 2
 
-- name: "ピラミッド・タートル"
+- model: inventory.product
   fields:
+    name: "ピラミッド・タートル"
     price: 190
     description: "戦闘で破壊された場合、デッキから守備力2000以下のアンデット族モンスターを特殊召喚できる。"
-    category: "Monster"
+    category: 1
 
-- name: "八汰烏の骸"
+- model: inventory.product
   fields:
+    name: "八汰烏の骸"
     price: 170
     description: "ドロー効果を持つ速攻魔法。発動後にデッキに戻るため、墓地を肥やさない。"
-    category: "Magic"
+    category: 2
 
-- name: "月の書"
+- model: inventory.product
   fields:
+    name: "月の書"
     price: 240
     description: "フィールド上のモンスター1体を裏側守備表示にできる汎用性の高いカード。"
-    category: "Magic"
+    category: 2
 
-- name: "封魔の呪印"
+- model: inventory.product
   fields:
+    name: "封魔の呪印"
     price: 200
     description: "手札の魔法カード1枚を捨てることで、相手の魔法カードの発動を無効にし、以降の同名カードの発動を封じる。"
-    category: "Trap"
+    category: 3
 
-- name: "ミスト・ボディ"
+- model: inventory.product
   fields:
+    name: "ミスト・ボディ"
     price: 90
     description: "装備モンスターを戦闘で破壊されなくする装備魔法。"
-    category: "Magic"
+    category: 2
 
-- name: "迷宮壁－ラビリンス・ウォール"
+- model: inventory.product
   fields:
+    name: "迷宮壁－ラビリンス・ウォール"
     price: 160
     description: "守備力3000を誇る通常モンスター。防御専用としての運用が主。"
-    category: "Monster"
+    category: 1

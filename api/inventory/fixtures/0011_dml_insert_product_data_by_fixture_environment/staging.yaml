@@ -1,59 +1,69 @@
-- name: "ハンター・スパイダー"
+- model: inventory.product
   fields:
+    name: "ハンター・スパイダー"
     price: 130
     description: "昆虫族の通常モンスターで、蜘蛛のような見た目を持つ。"
-    category: "Monster"
+    category: 1
 
-- name: "マーダーサーカス・ゾンビ"
+- model: inventory.product
   fields:
+    name: "マーダーサーカス・ゾンビ"
     price: 125
     description: "ピエロの姿をしたアンデット族モンスター。"
-    category: "Monster"
+    category: 1
 
-- name: "トゥーン・ディフェンス"
+- model: inventory.product
   fields:
+    name: "トゥーン・ディフェンス"
     price: 170
     description: "自分の場にトゥーンモンスターがいる時、相手の攻撃対象を変更する効果を持つ。"
-    category: "Trap"
+    category: 3
 
-- name: "トラップ・ジャマー"
+- model: inventory.product
   fields:
+    name: "トラップ・ジャマー"
     price: 210
     description: "バトルフェイズ中に相手の罠カードの発動を無効化できる。"
-    category: "Trap"
+    category: 3
 
-- name: "レアゴールド・アーマー"
+- model: inventory.product
   fields:
+    name: "レアゴールド・アーマー"
     price: 100
     description: "装備したモンスター以外を攻撃できなくする装備魔法。"
-    category: "Magic"
+    category: 2
 
-- name: "超進化の繭"
+- model: inventory.product
   fields:
+    name: "超進化の繭"
     price: 190
     description: "フィールド上の昆虫族モンスターをリリースすることで、高レベルの昆虫族モンスターを特殊召喚できる。"
-    category: "Magic"
+    category: 2
 
-- name: "白兵戦"
+- model: inventory.product
   fields:
+    name: "白兵戦"
     price: 145
     description: "お互いのモンスターが攻撃力分のダメージを受ける速攻魔法。"
-    category: "Magic"
+    category: 2
 
-- name: "ラストバトル！"
+- model: inventory.product
   fields:
+    name: "ラストバトル！"
     price: 260
     description: "自分の場にモンスターが1体の時に発動し、相手と最終決戦を行う特殊な罠カード。"
-    category: "Trap"
+    category: 3
 
-- name: "ギャンブル"
+- model: inventory.product
   fields:
+    name: "ギャンブル"
     price: 115
     description: "自分の手札が2枚以下の時に発動できる罠カードで、成功すれば大量ドローが可能。"
-    category: "Trap"
+    category: 3
 
-- name: "DNA改造手術"
+- model: inventory.product
   fields:
+    name: "DNA改造手術"
     price: 195
     description: "フィールド上の全モンスターの種族を指定したものに変更できる永続罠。"
-    category: "Trap"
+    category: 3

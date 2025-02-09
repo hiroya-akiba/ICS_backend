@@ -1,5 +1,6 @@
 # django
 __pycache__/
+staticfiles
 config/settings/
 env/
 .env
