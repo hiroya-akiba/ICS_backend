@@ -1,2 +1,7 @@
 # django
 __pycache__/
+config/settings/
+env/
+.env
+config/settings/base.py
+config/settings/base.py
