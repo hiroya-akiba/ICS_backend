@@ -1,0 +1,17 @@
+asgiref
+Django==4.2.*
+djangorestframework
+djangorestframework_simplejwt
+gunicorn
+mysqlclient
+numpy
+packaging
+pandas
+PyJWT
+python-dateutil
+pytz
+PyYAML
+six
+sqlparse
+timedelta
+tzdata
