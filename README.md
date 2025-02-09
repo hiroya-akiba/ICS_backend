@@ -28,9 +28,12 @@ git clone https://github.com/hiroya-akiba/ICS_backend.git
 を実行
 
 ## 3. 環境変数ファイルを配置する。
-ローカルのproduct用.envファイルをダウンロードして、
+ローカルのproduct用.envファイルとproduct用settingファイルを
 このREADME.mdと同じ階層に配置する。
 (※ .envはgitに置いてないので、scp等でローカルから直接送信する。)
+→ デプロイツールを作成したので、以下コマンドを実行する。
+Windows : ./deploy.bat product
+Linux/Mac : bash deploy.sh product
 
 ## 4. 仮想環境を構築する。
 仮想環境を構築して、ライブラリインストールを行う。
