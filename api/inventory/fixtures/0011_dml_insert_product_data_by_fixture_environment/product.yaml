@@ -1,59 +1,69 @@
-- name: "ドリーム・ピエロ"
+- model: inventory.product
   fields:
+    name: "ドリーム・ピエロ"
     price: 120
     description: "このカードが守備表示から攻撃表示になった時、相手モンスター1体を破壊できる。"
-    category: "Monster"
+    category: 1
 
-- name: "ジェリービーンズマン"
+- model: inventory.product
   fields:
+    name: "ジェリービーンズマン"
     price: 80
     description: "お菓子のような見た目をした戦士族モンスター。高い攻撃力を持つ。"
-    category: "Monster"
+    category: 1
 
-- name: "魔法の筒"
+- model: inventory.product
   fields:
+    name: "魔法の筒"
     price: 300
     description: "相手の攻撃を無効化し、その攻撃力分のダメージを相手に与える。"
-    category: "Trap"
+    category: 3
 
-- name: "錬金生物ホムンクルス"
+- model: inventory.product
   fields:
+    name: "錬金生物ホムンクルス"
     price: 150
     description: "このカードの属性は自由に変更できる。戦略に応じた使い方が可能。"
-    category: "Monster"
+    category: 1
 
-- name: "エクトプラズマー"
+- model: inventory.product
   fields:
+    name: "エクトプラズマー"
     price: 200
     description: "自分のモンスターをリリースして、相手に攻撃力の半分のダメージを与える。"
-    category: "Magic"
+    category: 2
 
-- name: "死のマジックボックス"
+- model: inventory.product
   fields:
+    name: "死のマジックボックス"
     price: 250
     description: "自分のモンスター1体を相手に送り、相手のモンスター1体を破壊できる。"
-    category: "Magic"
+    category: 2
 
-- name: "霞の谷のファルコン"
+- model: inventory.product
   fields:
+    name: "霞の谷のファルコン"
     price: 180
     description: "攻撃するためには自分の場のカード1枚を手札に戻さなければならないが、高い攻撃力を誇る。"
-    category: "Monster"
+    category: 1
 
-- name: "強制脱出装置"
+- model: inventory.product
   fields:
+    name: "強制脱出装置"
     price: 220
     description: "フィールド上のモンスター1体を持ち主の手札に戻すことができる。"
-    category: "Trap"
+    category: 3
 
-- name: "神秘の中華なべ"
+- model: inventory.product
   fields:
+    name: "神秘の中華なべ"
     price: 130
     description: "自分の場のモンスター1体をリリースし、その攻撃力分のライフを回復できる。"
-    category: "Magic"
+    category: 2
 
-- name: "幻惑の巻物"
+- model: inventory.product
   fields:
+    name: "幻惑の巻物"
     price: 90
     description: "装備モンスターのカード名を別のモンスター名に変えることができる。"
-    category: "Magic"
+    category: 2
