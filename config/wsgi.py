@@ -8,8 +8,10 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
 """
 
 import os
-
+from dotenv import load_dotenv
 from django.core.wsgi import get_wsgi_application
+
+load_dotenv()
 
 env = os.getenv('DJANGO_ENV', 'development') # .envで定義された環境変数で場合分け
 
