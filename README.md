@@ -67,5 +67,77 @@ Djangoサーバーを一旦止めて、Gunicornをテスト起動する。
 gunicorn --bind 0.0.0.0:8000 config.wsgi:application
 ```
 再度Djangoのサーバー起動の時と同じURLでテストアクセスを行う。
+この時、静的ファイルがNginxによって提供されていないため、スタイルシート等が反映されていない画面となる。
 
-## 7. 
+## 7. Nginxをテスト起動 & 設定
+Gunicornを一旦止めて、Nginxをテスト起動する。
+```
+sudo apt install nginx
+sudo systemctl restart nginx
+```
+この段階でhttp://xx.xxx.xxx.xxxにアクセスすると502 bad gatewayが表示される。
+次に、Gunicornと連携するための設定ファイルを記載する。
+```
+sudo vim /etc/nginx/sites-available/project-ICS 
+```
+記載内容は以下。
+```
+server {
+    listen 80;
+    server_name xx.xxx.xxx.xxx;
+ 
+    location /staticfiles/ {
+        alias /home/XXX/ICS_backend/config/staticfiles/;
+    }
+
+    location /media/ {
+        alias /home/XXX/ICS_backend/media/;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+記載が終わったら、以下コマンドでシンボリックリンクを作成しておく。
+```
+sudo ln -s /etc/nginx/sites-available/project-ICS  /etc/nginx/sites-enabled/
+```
+www-data (Webサーバーのソフトウェア (NginxやApache等) がファイルシステムにアクセスするために使うユーザーアカウント) で、ICS_backendにアクセスするために、① グループに追加、② ファイル持ち主、③ 権限の書き換え を行う。
+① グループへの追加
+ICS_backendの権限を確認
+```
+ls -l /user/XXX/
+drwxr-xr-x 12 XXX XXX 4096 Feb  9 13:00 /home/XXX
+ls -l /user/XXX/ICS_backend
+drwxr-x--- 11 XXX XXX 4096 Feb 10 14:14 /home/XXX/ICS_backend/
+```
+www-dataをXXXグループに追加
+```
+sudo usermod -aG XXX www-data
+```
+② ファイルの持ち主変更
+```
+sudo chown -R XXX:www-data /home/XXX/ICS_backend
+```
+
+③ 権限を書き換え
+```
+sudo chmod 755 /home/XXX
+sudo chmod -R 750 /home/XXX/ICS_backend/
+```
+
+以上で、www-dataユーザーがstaticfilesにアクセスする権限を得ているかを確認する。
+ローカルのターミナルから以下のコマンドを実行。
+```
+curl http://xx.xxx.xxx.xxx/static/rest_framework/css/bootstrap.min.css
+```
+この時、StatusCodeが403 や 404の時は正しく設定できていないため、どこかが間違っている。
+StatusCodeが200の時、問題無く設定完了している。
+
+最後に、適当なHTTPクライアントを用いてテストアクセスを行う。
+URL : http://xx.xxx.xxx.xxx/api/inventory/login
+この時に、css等が反映されていれば、静的ファイルをNginxによって提供していることが確かめられる。
