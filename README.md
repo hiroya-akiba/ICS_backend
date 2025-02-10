@@ -45,7 +45,8 @@ pip install --upgrade pip setuptools
 pip install -r ICS_backend/config/requirements/product/requirements.txt
 ```
 
-## 5. Djangoをテスト起動
+## 5. Django
+### 5.1. テスト起動
 必要なライブラリのインストールが完了したら、
 以下のコマンドでDjangoをテスト起動する。
 ```
@@ -60,7 +61,21 @@ URL : http://xx.xxx.xxx.xxx/api/inventory/login
 ログイン画面のAPI結果が出力されたら問題無し。
 ついでにログインできるか試しておく。
 
-## 6. Gunicornをテスト起動
+### 5.2. フォルダ作成
+Staticファイルと画像ファイルを収集するフォルダを作成する。
+ICS_backend/configディレクトリ配下に、staticfilesフォルダとmediaフォルダを作成する。
+```
+mkdir ./ICS_backend/config/staticfiles
+mkdir ./ICS_backend/config/media
+```
+そして以下のコマンドを実行して静的ファイルを収集する。
+```
+python manage.py collectstatics --settings config.settings.product
+```
+staticfilesフォルダにcssファイルなどがコピーされてきたことを確認する。
+
+## 6. Gunicorn
+### 6.1. テスト起動
 Djangoサーバーを一旦止めて、Gunicornをテスト起動する。
 以下のコマンドで起動。
 ```
@@ -69,13 +84,16 @@ gunicorn --bind 0.0.0.0:8000 config.wsgi:application
 再度Djangoのサーバー起動の時と同じURLでテストアクセスを行う。
 この時、静的ファイルがNginxによって提供されていないため、スタイルシート等が反映されていない画面となる。
 
-## 7. Nginxをテスト起動 & 設定
-Gunicornを一旦止めて、Nginxをテスト起動する。
+## 7. Nginx
+### 7.1. テスト起動-1
+Gunicornを一旦止めて、Nginxを起動する。
 ```
 sudo apt install nginx
 sudo systemctl restart nginx
 ```
 この段階でhttp://xx.xxx.xxx.xxxにアクセスすると502 bad gatewayが表示される。
+
+### 7.2. 設定ファイル
 次に、Gunicornと連携するための設定ファイルを記載する。
 ```
 sudo vim /etc/nginx/sites-available/project-ICS 
@@ -106,6 +124,7 @@ server {
 ```
 sudo ln -s /etc/nginx/sites-available/project-ICS  /etc/nginx/sites-enabled/
 ```
+### 7.3. www-dataの権限周り設定
 www-data (Webサーバーのソフトウェア (NginxやApache等) がファイルシステムにアクセスするために使うユーザーアカウント) で、ICS_backendにアクセスするために、① グループに追加、② ファイル持ち主、③ 権限の書き換え を行う。
 ① グループへの追加
 ICS_backendの権限を確認
@@ -141,3 +160,4 @@ StatusCodeが200の時、問題無く設定完了している。
 最後に、適当なHTTPクライアントを用いてテストアクセスを行う。
 URL : http://xx.xxx.xxx.xxx/api/inventory/login
 この時に、css等が反映されていれば、静的ファイルをNginxによって提供していることが確かめられる。
+
