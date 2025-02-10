@@ -134,13 +134,13 @@ drwxr-xr-x 12 XXX XXX 4096 Feb  9 13:00 /home/XXX
 ls -l /user/XXX/ICS_backend
 drwxr-x--- 11 XXX XXX 4096 Feb 10 14:14 /home/XXX/ICS_backend/
 ```
-www-dataをXXXグループに追加
+XXXをwww-dataグループに追加
 ```
-sudo usermod -aG XXX www-data
+sudo usermod -aG www-data XXX
 ```
-② ファイルの持ち主変更
+② ファイルのグループ変更
 ```
-sudo chown -R XXX:www-data /home/XXX/ICS_backend
+sudo chown -R XXX:www-data /home/XXX (後ろがグループということに遅ればせながら気づいた)
 ```
 
 ③ 権限を書き換え
@@ -161,3 +161,36 @@ StatusCodeが200の時、問題無く設定完了している。
 URL : http://xx.xxx.xxx.xxx/api/inventory/login
 この時に、css等が反映されていれば、静的ファイルをNginxによって提供していることが確かめられる。
 
+# 8. systemcmd作成
+systemコマンドを作成して再起動しやすくする。
+/etc/systemd/system/ics-bk.serviceを作成
+```
+[Unit]
+Description=gunicorn
+After=network.target
+
+[Service]
+User=hiroya
+Group=www-data
+WorkingDirectory=/home/hiroya/ICS_backend
+ExecStart=/home/hiroya/ICS_env/bin/gunicorn --access-logfile - --workers 3 --bind 0.0.0.0:8000 config.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+```
+
+今後は、以下でgunicornを付けたり消したりできる。
+```
+sudo systemctl start ics-bk
+sudo systemctl stop ics-bk
+sudo systemctl status ics-bk
+sudo systemctl restart ics-bk
+```
+# 9. HTTPS
+Let's Encryptを使用して、発行したドメインをHTTPS化する。
+```
+sudo apt-get install letsencrypt
+sudo systemctl stop nginx
+sudo letsencrypt certonly --standalone -d xxxx.com
+sudo vim /etc/nginx/sites-available/project-ICS
+```
