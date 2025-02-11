@@ -192,5 +192,64 @@ Let's Encryptを使用して、発行したドメインをHTTPS化する。
 sudo apt-get install letsencrypt
 sudo systemctl stop nginx
 sudo letsencrypt certonly --standalone -d xxxx.com
+```
+
+再度nginxの設定を変える。
+```
 sudo vim /etc/nginx/sites-available/project-ICS
+```
+変更内容は以下の通り。
+```
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ics.hiroya-akb.com;
+    #server_name 18.179.226.189;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name ics.hiroya-akb.com;
+    client_max_body_size 10g;
+
+    ssl_certificate      /etc/letsencrypt/live/ics.hiroya-akb.com/fullchain.pem;
+    ssl_certificate_key  /etc/letsencrypt/live/ics.hiroya-akb.com/privkey.pem;
+
+    location /staticfiles/ {
+        alias /home/hiroya/ICS_backend/config/staticfiles/;
+    }
+   
+    location /media/ {
+        alias /home/hiroya/ICS_backend/media/;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+            
+```
+書き終えたら、以下を実行
+```
+sudo nginx -t
+sudo systemctl daemon-reload
+sudo systemctl start nginx
+sudo systemctl restart project-xxx
+```
+
+証明書を自動で更新するcronを登録しておく。
+```
+sudo crontab -e
+```
+
+```
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+HOME=/
+00 05 01 * * sudo systemctl stop nginx; sudo letsencrypt renew; sudo systemctl start nginx
 ```
